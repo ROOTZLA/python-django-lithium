@@ -12,6 +12,7 @@ WORKDIR /code
 # Install dependencies
 COPY requirements.txt /tmp/requirements.txt
 
+RUN apt-get update && apt-get install -y libffi-dev curl git unzip zip python3 build-essential make autoconf libtool jq
 RUN set -ex && \
     pip install --upgrade pip && \
     pip install -r /tmp/requirements.txt && \
