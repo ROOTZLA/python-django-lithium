@@ -18,6 +18,8 @@ DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "app2.t9hti8b5.dollardeploy.dev"]
 
+# Needed for Nginx Reverse proxy to work with Django and CSRF checking
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Application definition
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
