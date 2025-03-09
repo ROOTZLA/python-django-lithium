@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,7 +17,11 @@ SECRET_KEY = "django-insecure-0peo@#x9jur3!h$ryje!$879xww8y1y66jx!%*#ymhg&jkozs2
 DEBUG = True
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "app2.t9hti8b5.dollardeploy.dev"]
+# Take host name from environment variable if exists
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+
+if os.environ.get("APP_HOSTNAME"):
+    ALLOWED_HOSTS.append(os.environ.get("APP_HOSTNAME"))
 
 # Needed for Nginx Reverse proxy to work with Django and CSRF checking
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
